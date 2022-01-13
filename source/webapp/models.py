@@ -19,6 +19,7 @@ class Todolist(models.Model):
         verbose_name = 'Цель'
         verbose_name_plural = 'Цели'
 
+
 class Status(models.Model):
     status = models.CharField(max_length=100, null=False, blank=False, verbose_name='Статус')
 
