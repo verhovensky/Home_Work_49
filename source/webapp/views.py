@@ -8,10 +8,10 @@ from webapp.models import Todolist
 
 class IndexView(View):
 
-
-    def todolist_view(self, request, *args, **kwargs):
-        todolist = Todolist.objects.order_by("deadline")
-        return render(request, 'index.html', {'todolist': todolist})
+    def get(self, request, *args, **kwargs):
+        todolist = Todolist.objects.order_by("updated_at")
+        return render(request, 'index.html',
+                      {'todolist': todolist})
 
 
 def create_todolist_view(request):
