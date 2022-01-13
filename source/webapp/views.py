@@ -41,7 +41,7 @@ class TodolistView(TemplateView):
 
 class UpdateView(View):
 
-    def todolist_update_view(request, pk):
+    def todolist_update_view(self, request, pk):
         todolist = get_object_or_404(Todolist, pl=pk)
         if request.method == 'GET':
             form = TodolistForm(initial={
@@ -65,7 +65,7 @@ class UpdateView(View):
 
 class DeleteView(View):
 
-    def todolist_delete_view(request, pk):
+    def todolist_delete_view(self, request, pk):
         todolist = get_object_or_404(Todolist, pk=pk)
         if request.method == 'GET':
             return render(request, 'todolist_delete.html', {'todolist': todolist})
