@@ -1,0 +1,21 @@
+p{
+    font-size: 16px;
+}
+.card{
+    padding: 15px;
+    width: 500px;
+    border: black solid 3px;
+    border-radius: 30px;
+    margin: 20px 0;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.inline-div{
+    display: inline-block;
+}
+.delete_button{
+    width: 100px;
+    border: black 1px solid;
+}
