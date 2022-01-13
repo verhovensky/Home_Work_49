@@ -6,8 +6,7 @@ from webapp.models import Todolist
 # Create your views here.
 
 
-class IndexView(View):
-
+class IndexView(TemplateView):
 
     def todolist_view(self, request, *args, **kwargs):
         todolist = Todolist.objects.order_by("updated_at")
