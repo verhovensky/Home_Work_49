@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from django.views.generic import TemplateView, RedirectView
+from django.views.generic import View, TemplateView
 
 from webapp.forms import TodolistForm
 from webapp.models import Todolist
