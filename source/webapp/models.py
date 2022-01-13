@@ -2,21 +2,43 @@ from django.db import models
 
 # Create your models here.
 
-status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'), ('done', 'Сделано')]
-
 
 class Todolist(models.Model):
-    todolist = models.CharField(max_length=400, null=False, blank=False, verbose_name='Цель')
-    status = models.CharField(max_length=30, null=False, blank=False, default='active', choices=status_choices,
-                              verbose_name='Статус')
-    description = models.TextField(max_length=2000, null=True, blank=False, default="Подробное описание отсутствует",
-                                   verbose_name="Описание")
-    deadline = models.DateField(null=True, blank=True, default=None, verbose_name="Дата когда задача выполнена")
+    summary = models.CharField(max_length=2000, null=True, blank=False, verbose_name="Кратеое Описание")
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name="Полное описание")
+    status = models.ForeignKey('webapp.Status', related_name='tasks', verbose_name="Статус", on_delete=models.PROTECT)
+    type = models.ForeignKey('webapp.Type', related_name='tasks', verbose_name='Тип', on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
 
     def __str__(self):
-        return f"{self.pk}.  {self.todolist}: {self.status} / {self.deadline}"
+        return f'{self.pk}. {self.summary} {self.status}'
 
     class Meta:
         db_table = 'to_do_list'
         verbose_name = 'Цель'
         verbose_name_plural = 'Цели'
+
+class Status(models.Model):
+    status = models.CharField(max_length=100, null=False, blank=False, verbose_name='Статус')
+
+    def __str__(self):
+        return f'{self.pk}. {self.status}'
+
+    class Meta:
+        db_table = 'Status'
+        verbose_name = 'Статус'
+        verbose_name_plural = 'Статусы'
+
+
+class Type(models.Model):
+    type = models.CharField(max_length=100, null=False, blank=False, verbose_name='Тип')
+
+    def __str__(self):
+        return f'{self.pk}. {self.type}'
+
+    class Meta:
+        db_table = 'Type'
+        verbose_name = 'Задача'
+        verbose_name_plural = 'Задачи'
+
