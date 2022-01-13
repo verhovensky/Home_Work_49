@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todolist_add' %}">Написать</a>
+    </li>
+    <li class="nav-item">
+
+      </li>
+{% endblock %}
+{% block body %}
+
+    <H2>Гостевая книга</H2>
+
+{% for todolist in todolist %}
+
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item ">
+    <h2 class="accordion-header " id="panelsStayOpen-headingOne">
+      <button class="accordion-button p-3 mb-2 bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          <p>Записи {{ todolist.summary }} {{ todolist.type }}</p>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne"  class="accordion-collapse collapse show .text-secondary" aria-labelledby="panelsStayOpen-headingOne ">
+      <div class="accordion-body">
+    <h5 class="flex">({{ todolist.type }})<div class="inline-div"> <a href="{% url 'redact' todolist.pk %}"><i class="fas fa-keyboard"></i></a> <a href="{% url 'destroy' todolist.pk %}"><i class="far fa-calendar-times"></i></a></div></h5>
+    <p>{{todolist.description}}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Update To Do list{% endblock %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'todolist_view' todolist.pk%}">Вернуться к Задачи</a>
+    </li>{% endblock %}
+{% block content %}
+    <h1>Update To Do List</h1>
+    <form method="post">
+        {% include "partial/form.html" with button_text="Изменить"  %}
+    </form>
+
+{% endblock %}

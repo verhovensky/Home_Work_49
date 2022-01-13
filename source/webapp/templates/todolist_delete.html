@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Delete{% endblock %}
+{% block nav %}
+
+{% endblock %}
+{% block body %}
+
+    <form method="post">
+    {% csrf_token %}
+        <h2>Точно этого хотите?</h2>
+    <h3>Уверены в удалении {{ todolist.summarye }} ? </h3>
+        <p>{{ todolist.description }}</p>
+        <input type="destroy_button" class="btn btn-danger" type="submit" value="Удалить">
+        <form action="{% url 'index' %}" target="_blank">
+        <button type="destroy_button" class="btn btn-info">Или Нет</button>
+    </form>
+
+{% endblock %}
